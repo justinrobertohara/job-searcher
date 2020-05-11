@@ -1,0 +1,67 @@
+{
+  "name": "job-searcher",
+  "version": "1.0.0",
+  "description": "job searcher using github api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon server/index.js",
+    "build:dev": "webpack -d --watch"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.5.5",
+    "axios": "^0.19.0",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.0.6",
+    "build": "^0.1.4",
+    "chai": "^4.2.0",
+    "concurrently": "^4.1.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "faker": "^4.1.0",
+    "jquery": "^3.4.1",
+    "mocha": "^6.2.0",
+    "modal": "^1.2.0",
+    "moment": "^2.24.0",
+    "mongoose": "^5.6.8",
+    "mysql2": "^1.6.5",
+    "nodemon": "^1.19.1",
+    "path": "^0.12.7",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-modal": "^3.10.1",
+    "sequelize": "^5.12.2",
+    "watch": "^1.0.2",
+    "webpack": "^4.38.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.0",
+    "nodemon": "^1.19.1",
+    "request": "^2.88.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.7.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justinrobertohara/job-searcher.git"
+  },
+  "author": "Justin Robert O'Hara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/justinrobertohara/job-searcher/issues"
+  },
+  "homepage": "https://github.com/justinrobertohara/job-searcher#readme"
+}
