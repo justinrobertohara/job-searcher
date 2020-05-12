@@ -1,11 +1,19 @@
 const path = require('path');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
-  entry: './client/src/components/Index.jsx',
+  mode: 'production',
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        /* additional options here */
+      }),
+    ],
+  },
+  entry: './client/src/components/index.js',
   output: {
     path: __dirname + '/public/dist',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     rules: [
@@ -13,12 +21,12 @@ module.exports = {
         test: /\.jsx?$/,
         include: [path.resolve(__dirname, 'client/src/components')],
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: ['babel-loader'],
       },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader']
-      }
-    ]
-  }
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
 };
