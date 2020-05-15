@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Results from './Results.jsx';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -7,6 +8,7 @@ export default class App extends React.Component {
     this.state = {
       searchTerm: undefined,
       results: [],
+      searchedBoolean: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -18,9 +20,9 @@ export default class App extends React.Component {
     axios
       .get(`/github/api` + searchTerm)
       .then((response) => {
-        console.log(response.data);
         this.setState({
           results: response.data,
+          searchedBoolean: true,
         });
       })
       .catch((error) => {
@@ -53,6 +55,12 @@ export default class App extends React.Component {
         >
           Search Github
         </a>
+        {this.state.searchedBoolean === true && (
+          <div>
+            <h2>You have {this.state.results.length} results</h2>
+            <Results results={this.state.results} />
+          </div>
+        )}
       </div>
     );
   }
