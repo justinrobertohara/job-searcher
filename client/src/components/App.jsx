@@ -1,19 +1,31 @@
 import React from 'react';
+import axios from 'axios';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       searchTerm: undefined,
+      results: [],
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleSubmit(event) {
-    alert('fetch call to github api ', +this.state.searchTerm);
-    console.log(this.state.searchTerm);
-    event.preventDefault();
+  handleSubmit(e) {
+    e.preventDefault();
+    let searchTerm = this.state.searchTerm;
+    axios
+      .get(`/github/api` + searchTerm)
+      .then((response) => {
+        console.log(response.data);
+        this.setState({
+          results: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   handleChange(event) {
@@ -37,9 +49,7 @@ export default class App extends React.Component {
           className="button expanded"
           href="#"
           value={this.state.searchTerm}
-          onClick={(e) => {
-            this.handleSubmit(e.target.value);
-          }}
+          onClick={this.handleSubmit}
         >
           Search Github
         </a>
