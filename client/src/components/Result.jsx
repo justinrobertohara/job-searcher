@@ -17,8 +17,8 @@ export default function Result(props) {
         />
         <div className="card-section">
           <h4>{props.listing.location}</h4>
-          <p>{ReactHtmlParser(props.listing.how_to_apply)}</p>
-          <p>{ReactHtmlParser(props.listing.description)}</p>
+          <span>{ReactHtmlParser(props.listing.how_to_apply)}</span>
+          <span>{ReactHtmlParser(props.listing.description)}</span>
         </div>
       </div>
     </div>

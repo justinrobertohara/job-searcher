@@ -7,6 +7,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       searchTerm: undefined,
+      location: undefined,
       results: [],
       searchedBoolean: false,
     };
@@ -17,8 +18,16 @@ export default class App extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     let searchTerm = this.state.searchTerm;
+    let location = this.state.location;
+
+    let searchSpecifications = {
+      searchTerm: searchTerm,
+      location: location,
+    };
+
+    console.log(searchSpecifications);
     axios
-      .get(`/github/api` + searchTerm)
+      .post('/github/api', { data: searchSpecifications })
       .then((response) => {
         this.setState({
           results: response.data,
@@ -31,7 +40,9 @@ export default class App extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({ searchTerm: event.target.value });
+    let key = event.target.name;
+
+    this.setState({ [key]: event.target.value });
   }
 
   render() {
@@ -39,14 +50,31 @@ export default class App extends React.Component {
       <div className="grid-container">
         <h1 className="text-center">Job Searcher</h1>
         <h4 className="text-center">...for Software Engineers</h4>
+
+        {/* //make two rows
+        <div className="row">
+          <div className="columns large-6">column 1</div>
+          <div className="columns large-6">column 2</div>
+        </div> */}
         <label className="text-center">
           What framework do you know?
           <textarea
             type="text"
             onChange={this.handleChange}
+            name="searchTerm"
             placeholder="Search: React, Vue.js, Ruby on Rails"
           ></textarea>
         </label>
+        <label className="text-center">
+          Location
+          <textarea
+            type="text"
+            name="location"
+            onChange={this.handleChange}
+            placeholder="City name, Zip code, or other location search term."
+          ></textarea>
+        </label>
+
         <a
           className="button expanded"
           href="#"

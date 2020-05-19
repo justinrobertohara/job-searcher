@@ -11,15 +11,17 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
-app.get('/github/api:searchTerm', (req, res) => {
-  let searchTerm = req.params.searchTerm;
+app.post('/github/api', (req, res) => {
+  let searchTerm = req.body.data.searchTerm;
+  let location = req.body.data.location;
+
   request(
-    `https://jobs.github.com/positions.json?search=${searchTerm}`,
+    `https://jobs.github.com/positions.json?search=${searchTerm}&location=${location}`,
     (error, response, body) => {
       console.error('error:', error);
       console.log('statusCode:', response && response.statusCode);
       if (error) {
-        console.error(error);
+        res.status(404).send(error);
       } else {
         res.status(200).send(body);
       }
