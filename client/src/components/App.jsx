@@ -39,6 +39,10 @@ export default class App extends React.Component {
       });
   }
 
+  checkBox(event) {
+    console.log(event.target.id);
+  }
+
   handleChange(event) {
     let key = event.target.name;
 
@@ -50,31 +54,41 @@ export default class App extends React.Component {
       <div className="grid-container">
         <h1 className="text-center">Job Searcher</h1>
         <h4 className="text-center">...for Software Engineers</h4>
-
-        {/* //make two rows
         <div className="row">
-          <div className="columns large-6">column 1</div>
-          <div className="columns large-6">column 2</div>
-        </div> */}
-        <label className="text-center">
-          What framework do you know?
-          <textarea
-            type="text"
-            onChange={this.handleChange}
-            name="searchTerm"
-            placeholder="Search: React, Vue.js, Ruby on Rails"
-          ></textarea>
-        </label>
-        <label className="text-center">
-          Location
-          <textarea
-            type="text"
-            name="location"
-            onChange={this.handleChange}
-            placeholder="City name, Zip code, or other location search term."
-          ></textarea>
-        </label>
-
+          <div className="large-4 columns">
+            <label>
+              What framework do you know?
+              <input
+                type="text"
+                onChange={this.handleChange}
+                name="searchTerm"
+                placeholder="Search: React, Vue.js, Ruby on Rails"
+              />
+            </label>
+          </div>
+          <div className="large-4 columns">
+            <label>
+              Location
+              <input
+                type="text"
+                name="location"
+                onChange={this.handleChange}
+                placeholder="City name, Zip code, or other location search term."
+              />
+            </label>
+          </div>
+          <div className="large-4 columns">
+            <fieldset className="medium-6 cell">
+              <legend>Full Time </legend>
+              <input id="fullTime" type="checkbox" onChange={this.checkBox} />
+              <label htmlFor="checkbox1">Full Time</label>
+              <input id="partTime" type="checkbox" onChange={this.checkBox} />
+              <label htmlFor="checkbox2">Part Time</label>
+              <input id="noPref" type="checkbox" onChange={this.checkBox} />
+              <label htmlFor="checkbox3">No Preference</label>
+            </fieldset>
+          </div>
+        </div>
         <a
           className="button expanded"
           href="#"
