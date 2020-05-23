@@ -8,24 +8,24 @@ export default class App extends React.Component {
     this.state = {
       searchTerm: undefined,
       location: undefined,
+      fullTime: undefined,
       results: [],
       searchedBoolean: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.checkBox = this.checkBox.bind(this);
+    this.clearSearch = this.clearSearch.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    let searchTerm = this.state.searchTerm;
-    let location = this.state.location;
-
     let searchSpecifications = {
-      searchTerm: searchTerm,
-      location: location,
+      searchTerm: this.state.searchTerm,
+      location: this.state.location,
+      fullTime: this.state.fullTime,
     };
 
-    console.log(searchSpecifications);
     axios
       .post('/github/api', { data: searchSpecifications })
       .then((response) => {
@@ -39,14 +39,32 @@ export default class App extends React.Component {
       });
   }
 
-  checkBox(event) {
-    console.log(event.target.id);
-  }
-
   handleChange(event) {
     let key = event.target.name;
-
     this.setState({ [key]: event.target.value });
+  }
+
+  checkBox(event) {
+    let opportunity = event.target.id;
+    if (opportunity === 'fullTimeOpportunity') {
+      this.setState({
+        fullTime: true,
+      });
+    } else {
+      this.setState({
+        fullTime: false,
+      });
+    }
+  }
+
+  clearSearch() {
+    this.setState({
+      searchTerm: '',
+      location: '',
+      fullTime: '',
+      results: [],
+      searchedBoolean: false,
+    });
   }
 
   render() {
@@ -62,6 +80,7 @@ export default class App extends React.Component {
                 type="text"
                 onChange={this.handleChange}
                 name="searchTerm"
+                value={this.state.searchTerm}
                 placeholder="Search: React, Vue.js, Ruby on Rails"
               />
             </label>
@@ -72,23 +91,43 @@ export default class App extends React.Component {
               <input
                 type="text"
                 name="location"
+                value={this.state.location}
                 onChange={this.handleChange}
                 placeholder="City name, Zip code, or other location search term."
               />
             </label>
           </div>
-          <div className="large-4 columns">
-            <fieldset className="medium-6 cell">
-              <legend>Full Time </legend>
-              <input id="fullTime" type="checkbox" onChange={this.checkBox} />
-              <label htmlFor="checkbox1">Full Time</label>
-              <input id="partTime" type="checkbox" onChange={this.checkBox} />
-              <label htmlFor="checkbox2">Part Time</label>
-              <input id="noPref" type="checkbox" onChange={this.checkBox} />
-              <label htmlFor="checkbox3">No Preference</label>
-            </fieldset>
-          </div>
+
+          <fieldset className="large-5 cell">
+            <legend>Full Time Opportunity</legend>
+            <input
+              type="radio"
+              name="opportunity"
+              value={this.state.fullTime}
+              id="fullTimeOpportunity"
+              onChange={this.checkBox}
+              required
+            />
+            <label htmlFor="fullTimeOpportunity">Full Time</label>
+            <input
+              type="radio"
+              name="opportunity"
+              value="partTime"
+              id="partTimeOpportunity"
+              onChange={this.checkBox}
+            />
+            <label htmlFor="partTimeOpportunity">Part Time</label>
+            <input
+              type="radio"
+              name="opportunity"
+              value="noPref"
+              id="noPrefOpportunity"
+              onChange={this.checkBox}
+            />
+            <label htmlFor="noPrefOpportunity">No Preference</label>
+          </fieldset>
         </div>
+
         <a
           className="button expanded"
           href="#"
@@ -97,6 +136,14 @@ export default class App extends React.Component {
         >
           Search Github
         </a>
+        <a
+          className="button expanded alert"
+          href="#"
+          onClick={this.clearSearch}
+        >
+          Clear Search
+        </a>
+
         {this.state.searchedBoolean === true && (
           <div>
             <h2>You have {this.state.results.length} results</h2>

@@ -14,9 +14,12 @@ app.use(cors());
 app.post('/github/api', (req, res) => {
   let searchTerm = req.body.data.searchTerm;
   let location = req.body.data.location;
+  let fullTime = req.body.data.fullTime;
+
+  console.log(fullTime);
 
   request(
-    `https://jobs.github.com/positions.json?search=${searchTerm}&location=${location}`,
+    `https://jobs.github.com/positions.json?search=${searchTerm}&location=${location}&full_time=${fullTime}`,
     (error, response, body) => {
       console.error('error:', error);
       console.log('statusCode:', response && response.statusCode);
