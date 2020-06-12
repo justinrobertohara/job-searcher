@@ -6,8 +6,12 @@ export default function Result(props) {
     <div>
       <div className="card">
         <div className="card-divider">
-          {props.listing.type} Position {props.listing.title} for{' '}
-          {props.listing.company}
+          <div className="row">
+            {props.listing.type} Position {props.listing.title} for{' '}
+            {props.listing.company}
+            {/* learn how to get this to align to the left */}
+            <i className="fi-save size-48" style={{ textAlign: 'right' }}></i>
+          </div>
         </div>
         <img
           src={props.listing.company_logo}

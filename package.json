@@ -36,6 +36,8 @@
     "nodemon": "^1.19.1",
     "path": "^0.12.7",
     "react": "^16.8.6",
+    "react-accessible-accordion": "^3.0.1",
+    "react-accordion": "^0.1.0",
     "react-dom": "^16.8.6",
     "react-foundation": "^0.9.6",
     "react-html-parser": "^2.0.2",

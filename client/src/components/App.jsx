@@ -127,7 +127,6 @@ export default class App extends React.Component {
             <label htmlFor="noPrefOpportunity">No Preference</label>
           </fieldset>
         </div>
-
         <a
           className="button expanded"
           href="#"
