@@ -30,6 +30,24 @@ app.post('/github/api', (req, res) => {
   );
 });
 
+app.post('/saveListing/api', (req, res) => {
+  let saveListing = {
+    type: req.body.data.type,
+    title: req.body.data.title,
+    company: req.body.data.company,
+    company_logo: req.body.data.company_logo,
+    location: req.body.data.location,
+    how_to_apply: req.body.data.how_to_apply,
+    description: req.body.data.description,
+  };
+
+  // if (error) {
+  //   res.status(404).send(error);
+  // } else {
+    res.status(200).send(saveListing);
+  // }
+});
+
 app.listen(port, () =>
   console.log(`Job Searcher Component listening on port ${port}!`)
 );

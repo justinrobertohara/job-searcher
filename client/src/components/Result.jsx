@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import { Row, Col } from 'reactstrap';
+import axios from 'axios';
 
 export default class Result extends React.Component {
   constructor(props) {
@@ -18,7 +19,24 @@ export default class Result extends React.Component {
   }
 
   saveFunction() {
-    console.log(this.state);
+    console.log(saveListing);
+    let saveListing = {
+      type: this.state.type,
+      title: this.state.title,
+      company: this.state.company,
+      company_logo: this.state.company_logo,
+      location: this.state.location,
+      how_to_apply: this.state.how_to_apply,
+      description: this.state.description,
+    };
+    axios
+      .post('/saveListing/api', { data: saveListing })
+      .then((response) => {
+        console.log(response.data, 'will be saved to the database');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   render() {

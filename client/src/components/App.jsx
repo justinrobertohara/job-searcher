@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Results from './Results.jsx';
+import SavedListings from './SavedListings.jsx';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -10,12 +11,15 @@ export default class App extends React.Component {
       location: undefined,
       fullTime: undefined,
       results: [],
+      savedListings: [],
+      savedListingsBoolean: false,
       searchedBoolean: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.checkBox = this.checkBox.bind(this);
     this.clearSearch = this.clearSearch.bind(this);
+    this.savedListingsBoolean = this.savedListingsBoolean.bind(this);
   }
 
   handleSubmit(e) {
@@ -64,6 +68,12 @@ export default class App extends React.Component {
       fullTime: '',
       results: [],
       searchedBoolean: false,
+    });
+  }
+
+  savedListingsBoolean() {
+    this.setState({
+      savedListingsBoolean: !this.state.savedListingsBoolean,
     });
   }
 
@@ -142,15 +152,22 @@ export default class App extends React.Component {
         >
           Clear Search
         </a>
+        <a
+          className="button expanded success"
+          href="#"
+          onClick={this.savedListingsBoolean}
+        >
+          Saved Listings
+        </a>
 
         {this.state.searchedBoolean === true && (
           <div>
             <h2>You have {this.state.results.length} results</h2>
-            <Results
-              // saveFunction={this.saveFunction}
-              results={this.state.results}
-            />
+            <Results results={this.state.results} />
           </div>
+        )}
+        {this.state.savedListingsBoolean === true && (
+          <SavedListings savedListings={this.state.savedListings} />
         )}
       </div>
     );
