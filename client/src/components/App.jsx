@@ -146,7 +146,10 @@ export default class App extends React.Component {
         {this.state.searchedBoolean === true && (
           <div>
             <h2>You have {this.state.results.length} results</h2>
-            <Results results={this.state.results} />
+            <Results
+              // saveFunction={this.saveFunction}
+              results={this.state.results}
+            />
           </div>
         )}
       </div>
