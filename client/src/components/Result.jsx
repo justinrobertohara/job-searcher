@@ -19,7 +19,6 @@ export default class Result extends React.Component {
   }
 
   saveFunction() {
-    console.log(saveListing);
     let saveListing = {
       type: this.state.type,
       title: this.state.title,

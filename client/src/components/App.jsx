@@ -7,9 +7,9 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchTerm: undefined,
-      location: undefined,
-      fullTime: undefined,
+      searchTerm: '',
+      location: '',
+      fullTime: '',
       results: [],
       savedListings: [],
       savedListingsBoolean: false,
@@ -36,6 +36,7 @@ export default class App extends React.Component {
         this.setState({
           results: response.data,
           searchedBoolean: true,
+          savedListingsBoolean: false,
         });
       })
       .catch((error) => {
@@ -68,11 +69,17 @@ export default class App extends React.Component {
       fullTime: '',
       results: [],
       searchedBoolean: false,
+      savedListingsBoolean: false,
     });
   }
 
   savedListingsBoolean() {
     this.setState({
+      searchTerm: '',
+      location: '',
+      fullTime: '',
+      results: [],
+      searchedBoolean: false,
       savedListingsBoolean: !this.state.savedListingsBoolean,
     });
   }
