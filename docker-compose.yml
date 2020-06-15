@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  image:
+    build: .
+
+    ports:
+      - '80:3003'
+      - PROD_API_URL=http://ec2-18-223-24-44.us-east-2.compute.amazonaws.com
