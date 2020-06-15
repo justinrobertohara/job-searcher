@@ -24,6 +24,7 @@
     "chai": "^4.2.0",
     "concurrently": "^4.1.2",
     "cors": "^2.8.5",
+    "docker": "^1.0.0",
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "flexbox": "0.0.3",
