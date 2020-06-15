@@ -50,7 +50,7 @@ export default class Result extends React.Component {
               </div>
             </Col>
             <Col>
-              <div className="card-divider">
+              {/* <div className="card-divider">
                 <button
                   type="button"
                   className="success button"
@@ -58,7 +58,7 @@ export default class Result extends React.Component {
                 >
                   Save
                 </button>
-              </div>
+              </div> */}
             </Col>
           </Row>
         </div>

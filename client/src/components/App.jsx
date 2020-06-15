@@ -12,7 +12,7 @@ export default class App extends React.Component {
       fullTime: '',
       results: [],
       savedListings: [],
-      savedListingsBoolean: false,
+      // savedListingsBoolean: false,
       searchedBoolean: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -159,24 +159,27 @@ export default class App extends React.Component {
         >
           Clear Search
         </a>
-        <a
+        {/* <a
           className="button expanded success"
           href="#"
           onClick={this.savedListingsBoolean}
         >
           Saved Listings
-        </a>
-
+        </a> */}
         {this.state.searchedBoolean === true && (
           <div>
             <h2>You have {this.state.results.length} results</h2>
             <Results results={this.state.results} />
           </div>
         )}
-        {this.state.savedListingsBoolean === true && (
-          <SavedListings savedListings={this.state.savedListings} />
-        )}
       </div>
     );
   }
+}
+
+//conditional rendering for savedlistings
+{
+  /* {this.state.savedListingsBoolean === true && (
+          <SavedListings savedListings={this.state.savedListings} />
+        )} */
 }

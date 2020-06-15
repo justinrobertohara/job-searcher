@@ -44,7 +44,7 @@ app.post('/saveListing/api', (req, res) => {
   // if (error) {
   //   res.status(404).send(error);
   // } else {
-    res.status(200).send(saveListing);
+  res.status(200).send(saveListing);
   // }
 });
 

@@ -1,6 +1,7 @@
 # job-searcher
 
 GitHub Job Searcher
+<br />
 This project is a quick single page app to demonstrate an MERN full stack application made with Mongo, Express, Node, and React.  This single page app interacts with the Github Jobs API to specify a type of framework, a specific location and full time abilities for up-to-date jobs.
 
 ## Installing 
