@@ -6,4 +6,4 @@ services:
 
     ports:
       - '80:3000'
-      - PROD_API_URL=http://ec2-18-223-24-44.us-east-2.compute.amazonaws.com
+      - PROD_API_URL=http://http://ec2-3-14-85-236.us-east-2.compute.amazonaws.com/
